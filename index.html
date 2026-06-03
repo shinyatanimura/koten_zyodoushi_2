@@ -254,10 +254,14 @@
 
       <!-- ==================== QUIZ SCREEN ==================== -->
       <div id="screen-quiz" class="screen">
-        <!-- メタ情報 -->
         <div class="flex justify-between items-center mb-4">
-          <span class="text-xs font-bold text-slate-400 bg-slate-800/80 px-3 py-1.5 rounded-full border border-slate-700/50" id="q-num">1 / 10</span>
-          <span class="text-xs font-bold px-3 py-1.5 rounded-full border border-violet-500/30 bg-violet-950/40 text-violet-300" id="mode-label"></span>
+          <button onclick="confirmGoHome()" class="text-slate-400 hover:text-white transition-colors flex items-center gap-1 text-xs font-bold bg-slate-800/80 px-3 py-1.5 rounded-full border border-slate-700/50 hover:border-slate-500 cursor-pointer">
+            <i class="ti ti-arrow-left text-sm"></i> 中断
+          </button>
+          <div class="flex gap-2">
+            <span class="text-xs font-bold text-slate-400 bg-slate-800/80 px-3 py-1.5 rounded-full border border-slate-700/50" id="q-num">1 / 10</span>
+            <span class="text-xs font-bold px-3 py-1.5 rounded-full border border-violet-500/30 bg-violet-950/40 text-violet-300" id="mode-label"></span>
+          </div>
         </div>
 
         <!-- プレミアムプログレスバー -->
@@ -604,6 +608,14 @@
 
     function goHome() {
       show('screen-home');
+    }
+
+    // 追加：中断時の確認ダイアログ
+    function confirmGoHome() {
+      const isOK = confirm("クイズを中断してホームに戻りますか？\n（現在のスコアや間違えた問題のデータはリセットされます）");
+      if (isOK) {
+        goHome();
+      }
     }
 
     /* ---- 気持ち良い学習のためのビジュアル演出(Confetti) ---- */
